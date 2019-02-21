@@ -35,11 +35,11 @@ cluster:
 #    hostPort: ${SW_CLUSTER_CONSUL_HOST_PORT:localhost:8500}
 core:
   default:
-    restHost: {{SW_CORE_REST_HOST}}
-    restPort: {{SW_CORE_REST_PORT}}
-    restContextPath: /
-    gRPCHost: {{SW_CORE_GRPC_HOST}}
-    gRPCPort: {{SW_CORE_GRPC_PORT}}
+    restHost: ${SW_CORE_REST_HOST:0.0.0.0}
+    restPort: ${SW_CORE_REST_PORT:12800}
+    restContextPath: ${SW_CORE_REST_CONTEXT_PATH:/}
+    gRPCHost: ${SW_CORE_GRPC_HOST:0.0.0.0}
+    gRPCPort: ${SW_CORE_GRPC_PORT:11800}
     downsampling:
     - Hour
     - Day
@@ -57,14 +57,14 @@ storage:
 #    user: ${SW_STORAGE_H2_USER:sa}
   elasticsearch:
     # nameSpace: ${SW_NAMESPACE:""}
-    clusterNodes: {{SW_STORAGE_ES_CLUSTER_NODES}}
-    indexShardsNumber: {{SW_STORAGE_ES_INDEX_SHARDS_NUMBER}}
-    indexReplicasNumber: {{SW_STORAGE_ES_INDEX_REPLICAS_NUMBER}}
+    clusterNodes: 192.168.0.151:9200
+    indexShardsNumber: 2
+    indexReplicasNumber: 0
     # Batch process setting, refer to https://www.elastic.co/guide/en/elasticsearch/client/java-api/5.5/java-docs-bulk-processor.html
-    bulkActions: {{SW_STORAGE_ES_BULK_ACTIONS}} # Execute the bulk every 2000 requests
-    bulkSize: {{SW_STORAGE_ES_BULK_SIZE}} # flush the bulk every 20mb
-    flushInterval: {{SW_STORAGE_ES_FLUSH_INTERVAL}} # flush the bulk every 10 seconds whatever the number of requests
-    concurrentRequests: {{SW_STORAGE_ES_CONCURRENT_REQUESTS}} # the number of concurrent requests
+    bulkActions: 2000 # Execute the bulk every 2000 requests
+    bulkSize: 20 # flush the bulk every 20mb
+    flushInterval: 10 # flush the bulk every 10 seconds whatever the number of requests
+    concurrentRequests: 2 # the number of concurrent requests
 #  mysql:
 receiver-register:
   default:
@@ -95,3 +95,5 @@ query:
     path: ${SW_QUERY_GRAPHQL_PATH:/graphql}
 alarm:
   default:
+telemetry:
+  none:

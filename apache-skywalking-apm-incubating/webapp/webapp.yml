@@ -22,8 +22,7 @@ collector:
   ribbon:
     ReadTimeout: 10000
     # Point to all backend's restHost:restPort, split by ,
-    #listOfServers: 127.0.0.1:12800
-    listOfServers: {{SW_COLLECTOR_RIBBON_LISTOFSERVERS}}
+    listOfServers: 192.168.0.151:12800
 
 security:
   user:
