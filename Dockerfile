@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM internal-registry.ghostcloud.cn/venus/ubuntu-jdk8:16.04.1
 
 MAINTAINER futao@ghostcloud.cn
 
@@ -30,6 +30,4 @@ ENV SW_COLLECTOR_RIBBON_LISTOFSERVERS=127.0.0.1:12800
 
 EXPOSE 8080 11800 12800
 
-#ENTRYPOINT ["sh", "bin/startup.sh"]
 ENTRYPOINT ["sh", "./docker-entrypoint.sh"]
-
