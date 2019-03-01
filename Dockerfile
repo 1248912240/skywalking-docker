@@ -1,0 +1,31 @@
+FROM internal-registry.ghostcloud.cn/venus/ubuntu-jdk8:16.04.1
+
+MAINTAINER futao@ghostcloud.cn
+
+COPY apache-skywalking-apm-incubating /apache-skywalking-apm-incubating
+
+WORKDIR /apache-skywalking-apm-incubating
+
+# agent/config/agent.config
+ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=192.168.0.151:11800
+
+# config/application.yml
+ENV SW_CORE_REST_HOST=0.0.0.0
+ENV SW_CORE_REST_PORT=12800
+ENV SW_CORE_GRPC_HOST=0.0.0.0
+ENV SW_CORE_GRPC_PORT=11800
+
+ENV SW_STORAGE_ES_CLUSTER_NODES=192.168.0.151:9200
+ENV SW_STORAGE_ES_INDEX_SHARDS_NUMBER=2
+ENV SW_STORAGE_ES_INDEX_REPLICAS_NUMBER=0
+ENV SW_STORAGE_ES_BULK_ACTIONS=2000
+ENV SW_STORAGE_ES_BULK_SIZE=20
+ENV SW_STORAGE_ES_FLUSH_INTERVAL=10
+ENV SW_STORAGE_ES_CONCURRENT_REQUESTS=2
+
+# webapp/webapp.yml,Point to all backend's restHost:restPort, split by ,
+ENV SW_COLLECTOR_RIBBON_LISTOFSERVERS=192.168.0.151:12800
+
+EXPOSE 8080 11800 12800
+
+ENTRYPOINT ["sh", "./bin/startup.sh"]
