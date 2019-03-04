@@ -4,9 +4,6 @@ COPY skywalking-apm-collector /skywalking-apm-collector
 
 WORKDIR /skywalking-apm-collector
 
-# agent/config/agent.config
-ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=192.168.0.151:11800
-
 # config/application.yml
 ENV SW_CORE_REST_HOST=0.0.0.0
 ENV SW_CORE_REST_PORT=12800
