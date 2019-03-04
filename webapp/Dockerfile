@@ -14,4 +14,4 @@ ENV SW_COLLECTOR_RIBBON_LISTOFSERVERS=192.168.0.151:12800
 
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "./bin/webappService.sh"]
+ENTRYPOINT ["sh", "bin/webappService.sh"]

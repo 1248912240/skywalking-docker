@@ -49,5 +49,5 @@ LOG_FILE_LOCATION=${WEBAPP_LOG_DIR}/webapp.log
 _RUNJAVA=${JAVA_HOME}/bin/java
 [ -z "$JAVA_HOME" ] && _RUNJAVA=java
 
-$_RUNJAVA ${JAVA_OPTS} -jar ${JAR_PATH}/skywalking-webapp.jar --spring.config.location=${JAR_PATH}/webapp.yml
+$_RUNJAVA -javaagent:agent/skywalking-agent.jar ${JAVA_OPTS} -jar ${JAR_PATH}/skywalking-webapp.jar --spring.config.location=${JAR_PATH}/webapp.yml
 
