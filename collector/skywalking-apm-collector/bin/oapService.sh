@@ -67,4 +67,4 @@ OAP_OPTIONS=" -Doap.logDir=${OAP_LOG_DIR}"
 
 echo "SkyWalking OAP starting!!!"
 
-$_RUNJAVA -javaagent:agent/skywalking-agent.jar ${JAVA_OPTS} ${OAP_OPTIONS} -classpath ${CLASSPATH} org.apache.skywalking.oap.server.starter.OAPServerStartUp
+$_RUNJAVA ${JAVA_OPTS} ${OAP_OPTIONS} -classpath $CLASSPATH org.apache.skywalking.oap.server.starter.OAPServerStartUp
